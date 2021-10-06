@@ -46,7 +46,7 @@ internal class ContaTest(){
     }
 
     @Test
-    fun `deve debitar quando o valor for positivo e o idCliente for igual ao do dono da conta`(){
+    fun `deve debitar quando o valor for positivo menor que o saldo e o idCliente for igual ao do dono da conta`(){
         val idCliente = conta.idCliente
         val valorPositivo = BigDecimal(50)
         val valorEsperado = conta.saldo - valorPositivo
@@ -54,6 +54,18 @@ internal class ContaTest(){
         val debito = conta.debita(valorPositivo, idCliente)
 
         assertTrue(debito)
+        assertEquals(valorEsperado, conta.saldo)
+    }
+
+    @Test
+    fun `nao deve debitar quando o valor for maior que o saldo`(){
+        val idCliente = conta.idCliente
+        val valorMaior = conta.saldo + BigDecimal(1)
+        val valorEsperado = conta.saldo
+
+        val debito = conta.debita(valorMaior, idCliente)
+
+        assertFalse(debito)
         assertEquals(valorEsperado, conta.saldo)
     }
 
@@ -91,8 +103,5 @@ internal class ContaTest(){
         assertFalse(debito)
         assertEquals(valorEsperado, conta.saldo)
     }
-
-
-
 
 }
