@@ -49,6 +49,4 @@ class ContaController(private val contaRepository: ContaRepository) {
         val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456 )
         return ResponseEntity.ok().build()
     }
-
-
 }
