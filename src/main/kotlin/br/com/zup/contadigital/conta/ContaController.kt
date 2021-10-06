@@ -35,6 +35,11 @@ class ContaController(private val contaRepository: ContaRepository) {
         val conta = contaRepository.findById(request.idConta).get()
         val debita = conta.debita(request.valor, request.idCliente)
 
+        if (!debita) {
+            return ResponseEntity.unprocessableEntity().body("Transação não efetuada")
+        }
+
+        return ResponseEntity.ok().build()
     }
 
     // Temporário
