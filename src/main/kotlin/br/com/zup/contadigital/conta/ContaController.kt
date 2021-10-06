@@ -33,7 +33,7 @@ class ContaController(private val contaRepository: ContaRepository) {
     @PostMapping("/debita")
     fun debita(@RequestBody @Valid request: TransacaoRequest): ResponseEntity<Any> {
         val conta = contaRepository.findById(request.idConta).get()
-        val debita = conta.debita(request.valor, request.idCliente)
+        val debita = conta.debita(request.valor, request.idClient)
 
         if (!debita) {
             return ResponseEntity.unprocessableEntity().body("Transação não efetuada")
