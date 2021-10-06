@@ -12,7 +12,7 @@ class Conta(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
-    private val idCliente: String = UUID.randomUUID().toString()
+    val idCliente: String = UUID.randomUUID().toString()
 
     // Lock Otimista - impede que seja feito requisições repetidas
     @Version
