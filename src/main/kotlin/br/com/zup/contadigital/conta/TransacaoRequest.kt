@@ -11,10 +11,7 @@ class TransacaoRequest (
         )
 {
 
-        val idClient: String
-                get() {
-                        TODO()
-                }
+        val idClient: String? = null
 
 //        constructor(idClient: String, valor: BigDecimal, request: TransacaoRequest) : this(request.idConta, valor)
 }
