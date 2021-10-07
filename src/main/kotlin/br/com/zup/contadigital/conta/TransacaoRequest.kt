@@ -5,15 +5,17 @@ import java.math.BigDecimal
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Positive
 
-class TransacaoRequest (
+data class TransacaoRequest (
         val idConta: Long,
         val valor: BigDecimal
         )
 {
 
-        val idCliente: String? = null
+        var idCliente: String? = "Esse é o id do cliente"
 
-//        constructor(idClient: String, valor: BigDecimal, request: TransacaoRequest) : this(request.idConta, valor)
+        constructor(idCliente: String, idConta: Long, valor: BigDecimal) : this(idConta, valor){
+                this.idCliente = idCliente
+        }
 }
 
 //class Request(val idConta: Long, valor: BigDecimal) {

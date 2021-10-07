@@ -41,13 +41,14 @@ class ContaController(private val contaRepository: ContaRepository) {
 
         return ResponseEntity.ok().build()
     }
-}
 
-    // Temporário
-//    @Transactional
-//    @GetMapping("/criaconta")
-//    fun criaConta(): ResponseEntity<Any>{
-//        val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456 )
-//        return ResponseEntity.ok().build()
-//    }
-//}
+
+     //Temporário
+    //@Transactional
+    @GetMapping("/criaconta")
+    fun criaConta(): ResponseEntity<Any>{
+        val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456 )
+        val contaSalva = contaRepository.save(conta)
+         return ResponseEntity.ok().body(contaSalva)
+    }
+}
