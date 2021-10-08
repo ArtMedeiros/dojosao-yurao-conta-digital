@@ -3,10 +3,7 @@ package br.com.zup.contadigital.conta
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 import javax.transaction.Transactional
 import javax.validation.Valid
@@ -42,13 +39,31 @@ class ContaController(private val contaRepository: ContaRepository) {
         return ResponseEntity.ok().build()
     }
 
+    @GetMapping("/{idConta}")
+    fun consultaSaldo(
+        @PathVariable idConta: Long,
+        @RequestParam valor: Long
+    ): ResponseEntity<Any> {
 
-     //Temporário
+        val possivelConta = contaRepository.findById(idConta)
+        if (possivelConta.isEmpty) {
+            return ResponseEntity.notFound().build()
+        }
+
+        val conta = possivelConta.get()
+        return if(!conta.consultaSaldo(valor)){
+            ResponseEntity.badRequest().build()
+        } else {
+            ResponseEntity.ok().build()
+        }
+    }
+
+    //Temporário
     //@Transactional
     @GetMapping("/criaconta")
-    fun criaConta(): ResponseEntity<Any>{
+    fun criaConta(): ResponseEntity<Any> {
         val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456, idCliente = 1)
         val contaSalva = contaRepository.save(conta)
-         return ResponseEntity.ok().body(contaSalva)
+        return ResponseEntity.ok().body(contaSalva)
     }
 }

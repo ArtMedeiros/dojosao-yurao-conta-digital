@@ -35,4 +35,8 @@ class Conta(
             true
         }
     }
+
+    fun consultaSaldo(valor: Long): Boolean {
+        return this.saldo >= BigDecimal(valor)
+    }
 }
