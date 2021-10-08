@@ -7,9 +7,9 @@ data class TransacaoRequest(
     val valor: BigDecimal
 ) {
 
-    var idCliente: String? = "Esse é o id do cliente"
+    var idCliente: Long? = null
 
-    constructor(idCliente: String, idConta: Long, valor: BigDecimal) : this(idConta, valor) {
+    constructor(idCliente: Long, idConta: Long, valor: BigDecimal) : this(idConta, valor) {
         this.idCliente = idCliente
     }
 }

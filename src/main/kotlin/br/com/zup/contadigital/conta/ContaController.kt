@@ -47,7 +47,7 @@ class ContaController(private val contaRepository: ContaRepository) {
     //@Transactional
     @GetMapping("/criaconta")
     fun criaConta(): ResponseEntity<Any>{
-        val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456 )
+        val conta: Conta = Conta(saldo = BigDecimal(2500), numeroConta = 123456, idCliente = 1)
         val contaSalva = contaRepository.save(conta)
          return ResponseEntity.ok().body(contaSalva)
     }
